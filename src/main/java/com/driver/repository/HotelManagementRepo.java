@@ -25,8 +25,8 @@ public class HotelManagementRepo {
 
     public String addHotel(Hotel hotel) {
 
-        if(hotel.getHotelName() == null || hotel == null ) return "Failure";
-        if(hotelmap.containsKey(hotel.getHotelName())) return "Failure";
+        if(hotel.getHotelName() == null || hotel == null ) return "FAILURE";
+        if(hotelmap.containsKey(hotel.getHotelName())) return "FAILURE";
         else hotelmap.put(hotel.getHotelName(), hotel);
 
         return "SUCCESS";
@@ -67,10 +67,11 @@ public class HotelManagementRepo {
     }
 
     public int getBookings(Integer aadharCard) {
+        int count =0;
         for (Booking book : bookmap.values()){
-            if (book.getBookingAadharCard() == aadharCard) return Integer.valueOf(book.getBookingId());
+            if (book.getBookingAadharCard() == aadharCard) count++;
         }
-        return -1;
+        return count;
     }
 
     public Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
